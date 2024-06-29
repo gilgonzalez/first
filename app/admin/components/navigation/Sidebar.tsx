@@ -8,7 +8,7 @@ import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 const sidebarItems = [
   { path: '/admin/dashboard', description:'Informacion de tareas y agenda', title:'Dashboard', icon:  <ProjectIcon size={20} /> },
   { path: '/admin/counter', description:'Contador de tareas diarias', title:'Counter', icon:  <ReportIcon size={ 20 }/>  },
-  { path: '/admin/product', description:'Listado y manejo de productos', title:'Productos', icon: <MdOutlineProductionQuantityLimits size={20}/> },
+  { path: '/admin/products', description:'Listado y manejo de productos', title:'Productos', icon: <MdOutlineProductionQuantityLimits size={20}/> },
   { path: '/contact', description:'Página web vista cliente', title:'Go to site', icon:  <ProjectSymlinkIcon size={20} /> },
 ];
 

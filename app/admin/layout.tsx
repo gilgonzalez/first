@@ -8,7 +8,7 @@ export default function AdminLayout({
   return (
     <div className="flex flex-row h-full w-full">
       <Sidebar/>
-      <div className="p-2 w-full">
+      <div className="p-2 w-full overflow-y-auto no-scrollbar">
         {children}
       </div>
     </div>
