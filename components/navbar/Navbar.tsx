@@ -4,11 +4,17 @@ import { ActiveLink } from '..';
 import Link from 'next/link';
 import style from './HomeLink.module.css';
 //create navbar items in an array of objects with path and name
+// const navbarItems = [
+//   { path: '/contact', children: <><MailIcon size={ 16 } />Contacto</> },
+//   { path: '/about', children: <><ReportIcon size={ 16 } />Sobre nosotros</> },
+//   { path: '/pricing', children: <><RubyIcon size={ 16 } />Precios</> }
+// ];
 const navbarItems = [
-  { path: '/contact', children: <><MailIcon size={ 16 } />Contacto</> },
-  { path: '/about', children: <><ReportIcon size={ 16 } />Sobre nosotros</> },
-  { path: '/pricing', children: <><RubyIcon size={ 16 } />Precios</> }
-];
+  { path: '/contact', title:'Contacto', icon:  <MailIcon size={20} /> },
+  { path: '/about',  title:'Sobre nosotros', icon:  <ReportIcon size={ 20 }/>  },
+  { path: '/pricing',  title:'Precios', icon: <RubyIcon size={20} /> },
+
+]
 
 export const Navbar = () => {
   return (
@@ -18,8 +24,8 @@ export const Navbar = () => {
         </Link>
         <span className="flex flex-row gap-4">
           { 
-            navbarItems.map( ({children, path}) => (
-              <ActiveLink key={path} path={path}>{children}</ActiveLink>
+            navbarItems.map( ({title, icon, path}) => (
+              <ActiveLink  key={path} path={path} title={title} icon={icon}/>
             ) )
           }
         </span>

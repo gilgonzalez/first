@@ -1,5 +1,6 @@
 import { Navbar } from '@/components';
 
+
 export default function GeneralLayout({
  children
 }: {
