@@ -14,7 +14,7 @@ export const Navbar = () => {
     <nav className="flex flex-row font-bold justify-around items-center h-14 bg-blue-800 bg-opacity-30 p-2 m-2 rounded">
       {
         navbarItems.map( ({children, path}) => (
-          <ActiveLink key={path} children={children} path={path}/>
+          <ActiveLink key={path} path={path}>{children}</ActiveLink>
         ) )
       }
     </nav>
