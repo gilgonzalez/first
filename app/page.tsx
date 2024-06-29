@@ -1,11 +1,11 @@
-import { HomeIcon } from '@primer/octicons-react';
 import Link from 'next/link';
+import style from '../components/navbar/HomeLink.module.css'
 
 export default function Home() {
   return (
     <main className="flex flex-col items-center p-24">
-      <Link href='/contact'>
-        <span className="capitalize text-5xl font-bold">hola gil</span>
+      <Link className={`${style.homelink} capitalize text-5xl font-bold`} href='/contact'>
+        <span >hola gil</span>
       </Link>
     </main>
   );

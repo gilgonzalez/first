@@ -6,14 +6,15 @@ import { usePathname } from 'next/navigation';
 interface Props {
   path: string,
   children: React.ReactNode;
+  className?: string;
 }
 
-export const ActiveLink = ( { path, children }: Props ) => {
+export const ActiveLink = ( { path, children, className = '' }: Props ) => {
 
   const isActive = usePathname() === path;
   return (
     <Link href={ path }>
-      <span className={ ` ${ style.link } ${ isActive && style[ 'active-link' ] }` }>
+      <span className={ `${className} ${ style.link } ${ isActive && style[ 'active-link' ] }` }>
         { children }
       </span></Link>
   );
