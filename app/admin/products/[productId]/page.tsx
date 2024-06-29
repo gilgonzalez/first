@@ -30,10 +30,11 @@ const getProduct = async (id:string) : Promise<ResponseProduct> => {
 
 const ProductPage = async ({params : {productId}} : Props) => {
 
+
   const product = await getProduct(productId)
   return (
-    <div className="flex flex-col justify-center items-center h-dvh text-slate-800">
-      <div className="flex flex-col mt-44 xs:mt-0 pt-4 bg-white items-center rounded-[20px] w-fit  bg-clip-border shadow-lg px-4 md:px-20  p-8">
+    <div className="flex flex-col justify-center items-center h-fit p-4 text-slate-800">
+      <div className="flex flex-col pt-4 bg-white items-center rounded-[20px] w-fit  bg-clip-border shadow-lg px-4 md:px-20  p-8">
         <div className="mt-2  w-full">
           <h1 className="px-2 text-xl font-bold text-slate-700 capitalize">
             #{product.id} {product.name}
@@ -44,14 +45,14 @@ const ProductPage = async ({params : {productId}} : Props) => {
               width={150}
               height={150}
               alt={`Imagen del product ${product.name}`}
-              className="mb-5"
+              className="mb-5 "
             />
             <Image
               src={product.sprites.other?.['official-artwork'].front_shiny ?? ''}
               width={150}
               height={150}
               alt={`Imagen del product ${product.name}`}
-              className="mb-5 -scale-x-100"
+              className="mb-5 -scale-x-100 "
             />
           </div>
         </div>
