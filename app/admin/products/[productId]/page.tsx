@@ -21,10 +21,15 @@ interface Props {
 // }
 
 export async function generateMetadata({params : {productId}} : Props) : Promise<Metadata> {
-  const {id, name} = await getProduct(productId)
+  const {id, name, sprites} = await getProduct(productId)
   return {
     title: `#${id} ${name.charAt(0).toUpperCase() + name.slice(1)}`,
-    description : `Esta es la descripcion del producto ${name}`
+    description : `Esta es la descripcion del producto ${name}`,
+    openGraph: {
+      title: name,
+      description: `Page of ${name}`,
+      images: [sprites.other?.['official-artwork'].front_default ?? ''],
+    },
   }
 }
 
