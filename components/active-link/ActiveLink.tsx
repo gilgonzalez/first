@@ -17,10 +17,12 @@ export const ActiveLink = ( { path, title, icon, className = '', description = n
   return (
     <Link href={ path }>
         <span className={ `${className} ${ style.link } ${ isActive && style[ 'active-link' ] }` }>
-          {icon}
-          <div>
-            <p className="font-bold">{title}</p>
-            {description && <p className={` ${isActive && 'text-blue-900 font-semibold'} hover:font-semibold hover:text-blue-900 text-xs text-slate-400`}>{description}</p>}
+          <div className="flex flex-row items-center justify-start flex-1 gap-2 px-2">
+            {icon}
+            <span className="flex flex-col ">
+              <p className="font-bold hidden sm:block ">{title}</p>
+              {description && <p className={` ${isActive && 'text-blue-900 font-semibold'} hover:font-semibold hover:text-blue-900 text-xs text-slate-400`}>{description}</p>}
+            </span>
           </div>
 
         </span>

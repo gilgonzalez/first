@@ -1,6 +1,7 @@
 import { ResponseProduct } from './interface';
 import { Metadata } from 'next';
 import Image from 'next/image'
+import { BreadCrumb } from '../../components/navigation/Breadcrumb';
 
 interface Props {
   params: {
@@ -33,6 +34,8 @@ const ProductPage = async ({params : {productId}} : Props) => {
 
   const product = await getProduct(productId)
   return (
+    <>
+    <BreadCrumb/>
     <div className="flex flex-col justify-center items-center h-fit p-4 text-slate-800">
       <div className="flex flex-col pt-4 bg-white items-center rounded-[20px] w-fit  bg-clip-border shadow-lg px-4 md:px-20  p-8">
         <div className="mt-2  w-full">
@@ -125,6 +128,7 @@ const ProductPage = async ({params : {productId}} : Props) => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

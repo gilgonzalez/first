@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import style from '../components/navbar/HomeLink.module.css'
-import { redirect } from 'next/navigation';
 
 export default function Home() {
 

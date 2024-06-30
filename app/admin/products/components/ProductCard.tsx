@@ -10,8 +10,8 @@ type Props = {
 export const ProductCard = ( { id, name }: Props ) => {
   return (
     <div className="mx-auto right-0 mt-2 w-60 group rounded-md">
-      <div className="bg-white overflow-visible shadow-lg rounded-lg">
-        <div className="text-center p-6 bg-gray-800 rounded-t-md">
+      <div className="bg-blue-500 overflow-visible shadow-2xl rounded-lg">
+        <div className="text-center p-6 bg-white rounded-t-md">
           <Image
             className="group-hover:drop-shadow-custom group-hover:scale-125 group-hover:-translate-x-5 transition-all duration-700"
             key={ id }
@@ -21,32 +21,31 @@ export const ProductCard = ( { id, name }: Props ) => {
             alt={ name }
             priority={ false }
           />
-          <p className="pt-2 text-lg font-semibold text-gray-50"></p>
           <div className="mt-5">
             <Link
               href={ `products/${id}` }
-              className="border capitalize rounded-full py-2 px-4 text-xs font-semibold text-gray-100"                         >
+              className="border border-dashed capitalize rounded-full py-2 px-4 text-xs font-semibold text-slate-600 border-slate-300"                         >
               #{ id } { name }
             </Link>
           </div>
         </div>
-          <Link className="px-4 py-2 hover:bg-gray-100 flex" href="/account/campaigns" >
-            <div className="flex  items-center">
+          <Link className="px-4 py-2 hover:bg-blue-700 flex" href="/account/campaigns" >
+            <div className="flex items-center ">
             <FcDatabase size={20}/>
-            <div className="pl-3">
-              <p className="text-sm font-medium text-gray-800 leading-none">
+            <div className="pl-3 space-y-1">
+              <p className="text-sm font-bold text-black  leading-none">
                 Stock
               </p>
-              <p className="text-xs text-gray-500">Disponibles : 44</p>
+              <p className="text-xs text-white ">Disponibles : 44</p>
             </div> 
             </div>
           </Link> 
-          <Link className="px-4 py-2 hover:bg-gray-100 rounded-b-lg flex" href="/account/donations" >
+          <Link className="px-4 py-2 hover:bg-blue-700 rounded-b-lg flex" href="/account/donations" >
             <div className="flex items-center">
               <FcMoneyTransfer size={20}/>
-              <div className="pl-3">
-                <p className="text-sm font-medium text-gray-800 leading-none">PvP</p>
-                <p className="text-xs text-gray-500">144$ / unit</p>
+              <div className="pl-3 space-y-1">
+                <p className="text-sm font-bold text-black  leading-none">PvP</p>
+                <p className="text-xs text-white ">144$ / unit</p>
               </div>
             </div>
           </Link> 

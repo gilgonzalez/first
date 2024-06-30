@@ -1,26 +1,19 @@
-import { HomeIcon, MailIcon, ReportIcon, RubyIcon } from '@primer/octicons-react';
-import React from 'react';
-import { ActiveLink } from '..';
 import Link from 'next/link';
-import style from './HomeLink.module.css';
-//create navbar items in an array of objects with path and name
-// const navbarItems = [
-//   { path: '/contact', children: <><MailIcon size={ 16 } />Contacto</> },
-//   { path: '/about', children: <><ReportIcon size={ 16 } />Sobre nosotros</> },
-//   { path: '/pricing', children: <><RubyIcon size={ 16 } />Precios</> }
-// ];
+import { FcAbout, FcContacts, FcHome, FcMoneyTransfer } from 'react-icons/fc';
+import { ActiveLink } from '../active-link/ActiveLink';
+
 const navbarItems = [
-  { path: '/contact', title:'Contacto', icon:  <MailIcon size={20} /> },
-  { path: '/about',  title:'Sobre nosotros', icon:  <ReportIcon size={ 20 }/>  },
-  { path: '/pricing',  title:'Precios', icon: <RubyIcon size={20} /> },
+  { path: '/contact', title:'Contacto', icon:  <FcContacts  size={20}/> },
+  { path: '/about',  title:'Sobre nosotros', icon:  <FcAbout size={20}/>  },
+  { path: '/pricing',  title:'Precios', icon: <FcMoneyTransfer size={20}/> },
 
 ]
 
 export const Navbar = () => {
   return (
-    <nav className="flex flex-row font-bold justify-between items-center h-14 bg-blue-800 bg-opacity-30 p-2 m-2 rounded">
-        <Link className={style.homelink } href={'/'}>
-          <HomeIcon size={ 16 } />Home
+    <nav className="flex flex-row font-bold text-white justify-between items-center h-14 bg-blue-900/80  p-2 m-2 rounded">
+        <Link className="flex flex-row gap-2 items-center text-white"  href={'/'}>
+          <FcHome  size={ 20 } />Home
         </Link>
         <span className="flex flex-row gap-4">
           { 
