@@ -6,11 +6,14 @@ export const metadata : Metadata = {
   description: 'Manage tasks'
 }
 
+
 const CounterPage = () => {
+
+  
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
-      <ManageTask />
+      <ManageTask/>
     </div>
   )
 }

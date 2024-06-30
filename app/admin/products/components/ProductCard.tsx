@@ -1,6 +1,9 @@
+'use client'
+import { useProductStore } from '@/app/store/product';
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FcDatabase, FcMoneyTransfer } from 'react-icons/fc';
+import { FcDatabase, FcLike, FcLikePlaceholder, FcMoneyTransfer,  } from 'react-icons/fc';
 
 
 type Props = {
@@ -8,10 +11,21 @@ type Props = {
   name: string;
 };
 export const ProductCard = ( { id, name }: Props ) => {
+
+  const pokemons = useProductStore(state => state.pokemons)
+  console.log({pokemons})
+  const toggleFavorite = useProductStore(state => state.toggleFavorite)
+  const isFavourite = pokemons.some(pokemon => pokemon.id === id);
   return (
     <div className="mx-auto right-0 mt-2 w-60 group rounded-md">
       <div className="bg-blue-500 overflow-visible shadow-2xl rounded-lg">
-        <div className="text-center p-6 bg-white rounded-t-md ">
+        <div className="text-center p-6 bg-white rounded-t-md relative">
+          <FcLike size={20} 
+            className={cn("absolute top-4 right-4 cursor-pointer opacity-50 transition-all duration-300", 
+              isFavourite && "opacity-100"
+            )} 
+            onClick={() => toggleFavorite(id, name)}
+          /> 
           <Link
             href={ `products/${name}` }
             className="flex flex-col items-center gap-4 py-2 px-4 text-xs font-semibold text-slate-600 border-slate-300"                         >

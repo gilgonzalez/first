@@ -1,12 +1,13 @@
+'use client'
 import { ProductCard } from '.';
-import type { SimplePokemon } from '../interface';
+import { SimplePokemon } from '../interface';
 
-interface Props{
+interface Props {
   items : SimplePokemon[]
 }
 
-export const ProductGrid = ({ items }: Props) => {
-  
+export const ProductGrid = ({items}: Props) => {
+
   return (
     <div className="flex flex-wrap gap-10 items-center justify-center ">
     {
