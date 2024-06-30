@@ -8,11 +8,9 @@ interface Props {
   title: string,
   icon : JSX.Element,
   className?: string;
-  description?: string | null;
-  showTitle?: boolean;
 }
 
-export const ActiveLink = ( { path, title, icon, className = '', description = null, showTitle = true }: Props ) => {
+export const NavbarLink = ( { path, title, icon, className = '' }: Props ) => {
 
   const isActive = usePathname() === path;
   return (
@@ -21,8 +19,7 @@ export const ActiveLink = ( { path, title, icon, className = '', description = n
           <div className="flex flex-row items-center justify-start flex-1 gap-2 px-2">
             {icon}
             <span className="flex flex-col ">
-              <p className="font-bold ">{title}</p>
-              {description && <p className={` ${isActive && 'text-blue-900 font-semibold'} hover:font-semibold hover:text-blue-900 text-xs text-slate-400`}>{description}</p>}
+              <p className="font-bold hidden md:block">{title}</p>
             </span>
           </div>
 

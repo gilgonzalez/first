@@ -12,11 +12,12 @@ import {
 import { ChevronLeft } from 'lucide-react';
 import { ActiveLink } from '@/components/active-link/ActiveLink';
 import { useState } from 'react';
+import { FcCalendar, FcNews, FcPaid } from 'react-icons/fc';
 
 const sidebarItems = [
-  { path: '/admin/dashboard', description:'Informacion de tareas y agenda', title:'Dashboard', icon:  <ProjectIcon size={20} /> },
-  { path: '/admin/counter', description:'Contador de tareas diarias', title:'Counter', icon:  <ReportIcon size={ 20 }/>  },
-  { path: '/admin/products', description:'Listado y manejo de productos', title:'Productos', icon: <MdOutlineProductionQuantityLimits size={20}/> },
+  { path: '/admin/dashboard', description:'Informacion de tareas y agenda', title:'Dashboard', icon:  <FcNews  size={20} /> },
+  { path: '/admin/counter', description:'Contador de tareas diarias', title:'Counter', icon:  <FcCalendar  size={ 20 }/>  },
+  { path: '/admin/products', description:'Listado y manejo de productos', title:'Productos', icon: <FcPaid  size={20}/> },
   { path: '/contact', description:'Página web vista cliente', title:'Go to site', icon:  <ProjectSymlinkIcon size={20} /> },
 ];
 

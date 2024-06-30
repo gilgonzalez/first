@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FcAbout, FcContacts, FcHome, FcMoneyTransfer } from 'react-icons/fc';
 import { ActiveLink } from '../active-link/ActiveLink';
+import { NavbarLink } from '../active-link/NavbarLink';
 
 const navbarItems = [
   { path: '/contact', title:'Contacto', icon:  <FcContacts  size={20}/> },
@@ -18,7 +19,7 @@ export const Navbar = () => {
         <span className="flex flex-row gap-4">
           { 
             navbarItems.map( ({title, icon, path}) => (
-              <ActiveLink  key={path} path={path} title={title} icon={icon}/>
+              <NavbarLink  key={path} path={path} title={title} icon={icon}/>
             ) )
           }
         </span>
