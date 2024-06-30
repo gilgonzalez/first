@@ -11,7 +11,10 @@ export const ProductCard = ( { id, name }: Props ) => {
   return (
     <div className="mx-auto right-0 mt-2 w-60 group rounded-md">
       <div className="bg-blue-500 overflow-visible shadow-2xl rounded-lg">
-        <div className="text-center p-6 bg-white rounded-t-md">
+        <div className="text-center p-6 bg-white rounded-t-md ">
+          <Link
+            href={ `products/${id}` }
+            className="flex flex-col items-center gap-4 py-2 px-4 text-xs font-semibold text-slate-600 border-slate-300"                         >
           <Image
             className="group-hover:drop-shadow-custom group-hover:scale-125 group-hover:-translate-x-5 transition-all duration-700"
             key={ id }
@@ -21,13 +24,9 @@ export const ProductCard = ( { id, name }: Props ) => {
             alt={ name }
             priority={ false }
           />
-          <div className="mt-5">
-            <Link
-              href={ `products/${id}` }
-              className="border border-dashed capitalize rounded-full py-2 px-4 text-xs font-semibold text-slate-600 border-slate-300"                         >
-              #{ id } { name }
+         
+              <p className="border border-dashed border-slate-200 rounded-full w-fit p-2">#{ id } { name }</p>
             </Link>
-          </div>
         </div>
           <Link className="px-4 py-2 hover:bg-blue-700 flex" href="/account/campaigns" >
             <div className="flex items-center ">

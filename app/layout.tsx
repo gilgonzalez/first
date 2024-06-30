@@ -7,6 +7,11 @@ const inter = Poppins({ subsets: ["latin"], weight:'200' });
 export const metadata: Metadata = {
   title: "First steps",
   description: "Curso Udemy del señor Fernando Herrera",
+  openGraph: {
+    title: "First steps",
+    description: "Curso Udemy del señor Fernando Herrera",
+    images: ["https://github.com/shadcn.png"],
+  },
 };
 
 export default function RootLayout({
