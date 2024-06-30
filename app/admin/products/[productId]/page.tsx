@@ -11,14 +11,14 @@ interface Props {
 
 /** ! This function is executed at build time on the server side. */
 /** ! It will be called only once for each product. */
-export async function generatedStaticParams () {
-  const res = await fetch('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    .then(res => res.json())
+// export async function generatedStaticParams () {
+//   const res = await fetch('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+//     .then(res => res.json())
 
-  return res.results.map((pokemon, index) => ({
-    productId: (index + 1).toString()
-  }))
-}
+//   return res.results.map((pokemon, index) => ({
+//     productId: (index + 1).toString()
+//   }))
+// }
 
 export async function generateMetadata({params : {productId}} : Props) : Promise<Metadata> {
   const {id, name} = await getProduct(productId)
