@@ -13,7 +13,13 @@ const nextConfig = {
         hostname: 'github.com',
         port: '',
         pathname: '/**',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.wikia.nocookie.net',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

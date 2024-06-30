@@ -26,7 +26,7 @@ const WidgetGrid = () => {
       initCounter(count)
 
     })
-  }, [])
+  }, [initCounter])
   return (
     <div className="flex flex-wrap gap-4 justify-center">
       <SimpleWidget/>
