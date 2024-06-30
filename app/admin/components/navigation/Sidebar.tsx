@@ -1,10 +1,8 @@
 'use client'
-import { ProjectIcon, ProjectSymlinkIcon, ReportIcon } from '@primer/octicons-react';
+import {  ProjectSymlinkIcon } from '@primer/octicons-react';
 import Image from 'next/image';
-import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTrigger,
