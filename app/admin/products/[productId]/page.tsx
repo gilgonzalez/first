@@ -2,6 +2,7 @@ import { ResponseProduct } from './interface';
 import { Metadata } from 'next';
 import Image from 'next/image'
 import { BreadCrumb } from '../../components/navigation/Breadcrumb';
+import { ResponsePokemon } from '../interface';
 
 interface Props {
   params: {
@@ -11,14 +12,22 @@ interface Props {
 
 /** ! This function is executed at build time on the server side. */
 /** ! It will be called only once for each product. */
-// export async function generatedStaticParams () {
-//   const res = await fetch('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-//     .then(res => res.json())
+export async function generateStaticParams() {
 
-//   return res.results.map((pokemon, index) => ({
-//     productId: (index + 1).toString()
-//   }))
-// }
+  const data:ResponsePokemon = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=251`)
+    .then( res => res.json() );
+
+    const pokemons = data.results.map( pokemon => ({
+      name: pokemon.name,
+    }));
+    console.log({pokemons})
+
+    return pokemons.map( ({ name }) => ({
+      productId: name
+    }));
+
+}
+
 
 export async function generateMetadata({params : {productId}} : Props) : Promise<Metadata> {
   const {id, name, sprites} = await getProduct(productId)

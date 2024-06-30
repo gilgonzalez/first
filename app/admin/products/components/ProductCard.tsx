@@ -13,7 +13,7 @@ export const ProductCard = ( { id, name }: Props ) => {
       <div className="bg-blue-500 overflow-visible shadow-2xl rounded-lg">
         <div className="text-center p-6 bg-white rounded-t-md ">
           <Link
-            href={ `products/${id}` }
+            href={ `products/${name}` }
             className="flex flex-col items-center gap-4 py-2 px-4 text-xs font-semibold text-slate-600 border-slate-300"                         >
           <Image
             className="group-hover:drop-shadow-custom group-hover:scale-125 group-hover:-translate-x-5 transition-all duration-700"
@@ -24,7 +24,6 @@ export const ProductCard = ( { id, name }: Props ) => {
             alt={ name }
             priority={ false }
           />
-         
               <p className="border border-dashed border-slate-200 rounded-full w-fit p-2">#{ id } { name }</p>
             </Link>
         </div>

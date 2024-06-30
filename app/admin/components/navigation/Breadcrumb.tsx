@@ -3,9 +3,7 @@
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { SlashIcon } from 'lucide-react';
@@ -24,7 +22,7 @@ export function BreadCrumb() {
           const buildRoute = `${routes.slice(0, index + 1).join('/')}`
           return (
             <>
-            <BreadcrumbItem key={index}>
+            <BreadcrumbItem key={buildRoute}>
               <Link href={buildRoute}>
                 {route.charAt(0).toUpperCase() + route.slice(1)}
               </Link>
@@ -38,21 +36,6 @@ export function BreadCrumb() {
           )
         })
       }
-        {/* <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <SlashIcon />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/components">Components</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <SlashIcon />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-        </BreadcrumbItem> */}
       </BreadcrumbList>
     </Breadcrumb>
   )
