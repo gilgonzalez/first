@@ -1,5 +1,4 @@
 import { ArrowDownIcon } from '@primer/octicons-react';
-import { ProductGrid } from '../products/components';
 import { FavoriteGrid } from '../products/components/FavoriteGrid';
 
 export const metadata = {

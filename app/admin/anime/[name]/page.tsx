@@ -10,11 +10,7 @@ interface Props {
 const getCharacter = async (name :string): Promise<CharacterResponse[]> => {
 
   const response = fetch(`https://demon-slayer-api.onrender.com/v1/${name}`)
-
   const data = (await response).json()
-
-  console.log({data})
-
   return data
 }
 

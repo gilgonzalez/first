@@ -1,7 +1,7 @@
 'use client'
 import { useProductStore } from '@/app/store/product';
 import { ProductCard } from '.';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FcPaid } from 'react-icons/fc';
 
@@ -10,6 +10,9 @@ export const FavoriteGrid = () => {
 
   const items = useProductStore(state => state.pokemons)
   const [pokemons, setPokemos] = useState(items)
+  useEffect(()=>{
+    setPokemos(items)
+  },[])
   return (
     <div className="flex flex-wrap gap-10 items-center justify-center ">
     {
