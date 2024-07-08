@@ -1,25 +1,31 @@
-import WidgetGrid from '../dashboard/WidgetGrid';
 
-interface Character{
-  name: string;
-  image: string;
-  url: string;
-} 
-const getCharacters = async () => {
-  const response = await fetch('https://demon-slayer-api.onrender.com/v1/')
-  const names = await response.json()
+import Link from 'next/link';
+import prisma from '@/lib/prisma';
+import GridWidget from './components/GridWidget';
 
-  return names;
-}
+export const metadata = {
+ title: 'Dashboard',
+ description: 'Dashboard',
+};
+
 
 const DashboardPage = async () => {
 
-  const characters = await getCharacters()
+  const tasks = await prisma.task.findMany({orderBy: {date: 'desc'}})
+  
+  
+
   return (
-    <div className="text-black">
+    <div className="text-black relative">
       <h1 className="mt-2 text-3xl font-bold">Dashboard</h1>
       <span className="text-xl">Informacion general</span>
-      <WidgetGrid/>
+      <Link
+        href="/admin/task" 
+        className=" absolute top-2 right-2 text-xs font-medium p-1 rounded-md bg-sky-500 text-white hover:bg-sky-700 transition-all duration-300">
+          New Task
+      </Link>
+      <GridWidget tasks={tasks} />
+      
     </div>
   )
 }

@@ -36,8 +36,8 @@ export async function GET(request: Request, segments : Segments) {
 }
 
 const postSchema = yup.object({
-  description :yup.string().required(),
-  name: yup.string().required(),
+  description :yup.string().optional(),
+  name: yup.string().optional(),
   completed: yup.boolean().optional().default(false)
 })
 
@@ -59,6 +59,7 @@ export async function PUT(request: Request , segments:Segments) {
       where : {id: taskId},
       data: { completed, description, name  }
     })
+    console.log({updatedTask})
     return NextResponse.json(updatedTask);
   } catch (error) {
     if (error instanceof yup.ValidationError) {

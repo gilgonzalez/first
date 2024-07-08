@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { Toaster } from 'sonner'
+
 import "./globals.css";
 
 const inter = Poppins({ subsets: ["latin"], weight:'200' });
@@ -22,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="es" className="w-full h-full">
       <body className={`${inter.className} w-full h-full`}>
+        <Toaster richColors/>
         {children}
       </body>
     </html>
