@@ -23,7 +23,7 @@ export const SimpleWidget = ({task, toggleTask} : Props) => {
   const [contentHeight, setContentHeight] = useState('0px');
 
   useEffect(() => {
-    setContentHeight(isCollapsed ? '64px' : `${contentRef.current.scrollHeight}px`);
+    setContentHeight(isCollapsed ? '64px' : `${contentRef?.current?.scrollHeight}px`);
   }, [isCollapsed]);
   return (
     <div className={cn("flex flex-col h-fit bg-white shadow-xl p-3 sm:min-w-[25%] rounded-2xl border border-gray-50 mx-2", completed && "bg-green-500/20")}>
