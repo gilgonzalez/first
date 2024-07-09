@@ -19,24 +19,23 @@ const GridWidget = ( { tasks }: Props ) => {
   const toggleTask = async ( id: string, completed: boolean ) => {
     const updatedTask = await api.updateTaskComplete( id, completed );
     if ( completed ) {
-      toast.success( `Task ${ updatedTask.name } completed`, { duration: 1500 } );
+      toast.success( `Task ${ updatedTask.name } completed`, { duration: 1000 } );
     } else {
-      toast.error( `Task ${ updatedTask.name } not completed`, { duration: 1500 } );
+      toast.error( `Task ${ updatedTask.name } not completed`, { duration: 1000 } );
     }
     router.refresh();
   };
   const deleteCompleted = async () => {
     const deleteAction = await api.deleteAllCompletedTasks();
-    toast.success( `Task ${ deleteAction.name } deleted`, { duration: 1500 } );
+    toast.success( `Task ${ deleteAction.name } deleted`, { duration: 1000 } );
     router.refresh();
   };
   return (
     <div className="flex flex-col w-full relative">
         
-          <ConfirmActionModal classContainerTrigger={'flex flex-row gap-2 text-xs absolute -top-8 right-0 bg-red-300 text-white hover:bg-red-400 transition-all duration-300 px-2 p-1 w-24 rounded-md'} description="¿Estás seguro de eliminar todas las tareas que aparecen como completadas?" title="Eliminar Completados" onCallback={ deleteCompleted }>
+          <ConfirmActionModal classContainerTrigger={'flex flex-row gap-2 text-xs absolute -top-8 right-0 bg-red-500 text-white hover:bg-red-400 transition-all duration-300 px-2 p-1 w-24 rounded-md'} description="¿Estás seguro de eliminar todas las tareas que aparecen como completadas?" title="Eliminar Completados" onCallback={ deleteCompleted }>
             <LiaTrashAltSolid size={ 24 } className="cursor-pointer text-red-100" /> Limpìar
           </ConfirmActionModal>
-       
         <div className="flex flex-wrap sm:grid-cols-2 gap-4 justify-start mt-4">
           <div className="flex flex-col flex-1 gap-4 lg:px-20">
             <h2>Pendientes</h2>

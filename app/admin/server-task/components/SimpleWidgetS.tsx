@@ -5,21 +5,18 @@ import { useEffect, useRef, useState } from 'react';
 import { FcCheckmark, FcList } from 'react-icons/fc';
 import { Task } from '@prisma/client';
 import { IoCheckmarkSharp } from 'react-icons/io5';
-import { EditTask } from './EditTask';
+import { EditTaskS } from './EditTaskS';
 import { FaMapPin } from 'react-icons/fa';
-import { LiaTrashAltSolid } from 'react-icons/lia';
-import { deleteTask } from '@/app/helpers/tasks';
-import { ConfirmActionModal } from '../../components/global/ConfirmActionModal';
 import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
+
 
 interface Props {
   task: Task;
-  toggleTask: (id: string, completed: boolean) => void;
+  toggleTask: (id: string, completed: boolean) => Promise<Task | {message:string}>;
 }
 
 
-export const SimpleWidget = ({task, toggleTask} : Props) => {
+export const SimpleWidgetS = ({task, toggleTask} : Props) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const {completed, description, date} = task;
   const dateFormat = new Intl.DateTimeFormat('es', {
@@ -29,19 +26,21 @@ export const SimpleWidget = ({task, toggleTask} : Props) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState('0px');
 
-  const router = useRouter();
+  const onToggle = async () => {
+    const res = await toggleTask(task.id, !completed)
+    if('message' in res){
+      toast.error(`[SERVER-ACTION] : ${res.message}` , {duration:1000})
+      return;
+    } 
+    toast.success('[SERVER-ACTION] : Task updated successfully' , {duration:1000})
+  }
+
 
   useEffect(() => {
     if(contentRef.current === null) return;
     setContentHeight(isCollapsed ? '64px' : `${contentRef.current.scrollHeight}px`);
   }, [isCollapsed]);
 
-    const onCallback = (id: string) => () => {
-      deleteTask(id).then(task => {
-        toast.success(`Task ${task.name} deleted`,{duration:1500});
-        router.refresh();
-      });
-    }
   return (
     <div style={{gridColumn: !completed ? '1/2' : '2/3'}} className={cn("flex flex-col relative h-fit border border-zinc-200 bg-amber-100 shadow-xl p-3 sm:min-w-[25%] rounded-2xl mx-2 col-end-1", completed && "bg-green-500/20 border-green-200")}>
     <div className="flex flex-col">
@@ -49,10 +48,10 @@ export const SimpleWidget = ({task, toggleTask} : Props) => {
         <span className='flex flex-row gap-2 items-center ps-6'>
           <FaMapPin  size={24} className={cn("text-zinc-500 absolute top-1 left-2", !completed && "text-red-300", completed && "text-green-700")}/>
           <h2 className="font-bold text-xl text-gray-600">
-            <EditTask task={task}/>
+            <EditTaskS task={task}/>
           </h2>
         </span>
-        <div onClick={()=>toggleTask(task.id, !completed)}  className="cursor-pointer">
+        <div onClick={onToggle}  className="cursor-pointer">
           {completed ? <FcCheckmark color='gray' className='hover:opacity-50  ' size={24} /> : <IoCheckmarkSharp size={24}   className='hover:text-emerald-500 hover:opacity-50 '/>}
         </div>
       </div>
@@ -63,7 +62,7 @@ export const SimpleWidget = ({task, toggleTask} : Props) => {
             style={{ maxHeight: contentHeight }}
             className="overflow-hidden transition-all duration-500 ease-in-out"
           >
-            <h4 className={cn("italic text-xs text-muted-foreground text-pretty max-w-72 max-h-fit", completed && "line-through")}>
+            <h4 className={cn("italic text-xs text-muted-foreground text-pretty max-h-fit", completed && "line-through")}>
               {description}
             </h4>
             <p className='text-xs text-muted-foreground text-right'>{dateFormat}</p>
@@ -71,9 +70,9 @@ export const SimpleWidget = ({task, toggleTask} : Props) => {
         </div>
       </div>
       <div className={cn("w-full flex justify-end text-right border-t border-gray-100 mt-2", completed && "border-green-500", !completed && "border-yellow-500")}>
-        <ConfirmActionModal description="¿Estás seguro de que quieres eliminar esta tarea?" title="Eliminar tarea" onCallback={onCallback(task.id)}>
+        {/* <ConfirmActionModal description="¿Estás seguro de que quieres eliminar esta tarea?" title="Eliminar tarea" onCallback={onCallback(task.id)}>
           <LiaTrashAltSolid size={24} className="cursor-pointer text-red-300"/>
-        </ConfirmActionModal>
+        </ConfirmActionModal> */}
         <button onClick={() => setIsCollapsed(!isCollapsed)} className={cn("text-yellow-600 text-xs focus:outline-none flex flex-row items-center justify-center", completed && "text-green-700")}>
           {isCollapsed ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
         </button>

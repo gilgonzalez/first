@@ -2,11 +2,10 @@
 
 import { DialogHeader, Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { IoTrashOutline } from 'react-icons/io5';
-import * as api from '@/app/helpers/tasks';
-import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Task } from '@prisma/client';
+import { toast } from 'sonner';
+import { addTask, deleteTask } from '@/app/helpers/actions/task-actions';
 
 interface Props {
   task?: Task | null;
@@ -14,9 +13,8 @@ interface Props {
 
 
 
-export const EditTask = ({task}: Props) => {
+export const EditTaskS = ({task}: Props) => {
 
-  const router = useRouter();
   const [open, setOpen] = useState(false);
   const { name, description } = task || {};
   const [nameValue, setNameValue] = useState(name);
@@ -30,25 +28,33 @@ export const EditTask = ({task}: Props) => {
     const name = formData.get('name') as string;
     console.log({description, name})
     if(description === '' || name === ''){
-      toast.error(`Please fill all the fields`, {duration:1500});
+      toast.error(`Please fill all the fields`, {duration:1000});
       return;
     }
-    try{
-      if(!task) {
-        const task = await api.createTask(description, name);
-        toast.success(`Task ${task.name} created`,{duration:1500});
-        setNameValue('');
-        setDescriptionValue('');
-      } else {
-        await api.updateTask(task.id, description, name);
-        toast.success(`Task ${task.name} updated`, {duration:1500});
-      }
-      router.refresh();
-    }catch(err){
-      console.log(err)
-    } finally{
-      setOpen(false);
+    const res = await addTask(name, description, task?.id)
+    if('message' in res){
+      toast.error(`[SERVER-ACTION] : ${res.message}`)
+      return;
     }
+    toast.success('[SERVER-ACTION] : Task created successfully')
+    if(!task?.id) {
+      setNameValue('')
+      setDescriptionValue('')
+    };
+    setOpen(false);
+  }
+  const handleDelete = async () => {
+    if(!task){
+      setOpen(false)
+      return
+    }
+    const res = await deleteTask(task.id)
+    if('message' in res){
+      toast.error(`[SERVER-ACTION] : ${res.message}` , {duration:1000})
+      return;
+    }
+    toast.success('[SERVER-ACTION] : Task deleted successfully', {duration:1000})
+    setOpen(false)
   }
 
   return (
@@ -83,8 +89,9 @@ export const EditTask = ({task}: Props) => {
               {task ? 'Modificar' : 'Crear'}
             </button>
             <button
-              //TODO: onClick={ () => deleteCompleted() }
-              type='button' className=" flex items-center justify-center rounded bg-red-500 p-2 text-white hover:bg-red-700 transition-all ">
+              onClick={ handleDelete }
+              type='button' 
+              className=" flex items-center justify-center rounded bg-red-500 p-2 text-white hover:bg-red-700 transition-all ">
               <IoTrashOutline />
               Delete
             </button>
