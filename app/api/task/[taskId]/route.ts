@@ -67,8 +67,26 @@ export async function PUT(request: Request , segments:Segments) {
     }
     return NextResponse.json(error, { status: 400 });
   }
+}
 
-  
-
-  
+export async function DELETE(request: Request , segments:Segments) {
+  try{
+    const {params:{taskId}} = segments;
+    console.log({taskId}) 
+    if(!taskId){  
+      return NextResponse.json({
+        data: 'Send a task id'
+      }, {status: 400});
+    }
+    const deletedTask = await prisma.task.delete({
+      where : {id: taskId}
+    })
+    console.log({deletedTask})
+    return NextResponse.json(deletedTask);
+  } catch (error) {
+    if (error instanceof yup.ValidationError) {
+      return NextResponse.json({ error: error.errors }, { status: 400 });
+    }
+    return NextResponse.json(error, { status: 400 });
+  }
 }
