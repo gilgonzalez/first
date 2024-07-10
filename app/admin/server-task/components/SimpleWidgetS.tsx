@@ -1,13 +1,14 @@
 'use client'
 import { cn } from '@/lib/utils';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { startTransition, useEffect, useRef, useState } from 'react';
 import { FcCheckmark, FcList } from 'react-icons/fc';
 import { Task } from '@prisma/client';
 import { IoCheckmarkSharp } from 'react-icons/io5';
 import { EditTaskS } from './EditTaskS';
 import { FaMapPin } from 'react-icons/fa';
 import { toast } from 'sonner';
+import { useOptimistic } from 'react'
 
 
 interface Props {
@@ -18,22 +19,46 @@ interface Props {
 
 export const SimpleWidgetS = ({task, toggleTask} : Props) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const {completed, description, date} = task;
+  const { description, date} = task;
   const dateFormat = new Intl.DateTimeFormat('es', {
     dateStyle: 'full',
     timeStyle: 'short',
   }).format(date)
   const contentRef = useRef<HTMLDivElement>(null);
-  const [contentHeight, setContentHeight] = useState('0px');
+  const [contentHeight, setContentHeight] = useState('0px');  
+  /**
+ * Utiliza un comportamiento optimista para manejar el estado de una tarea.
+ *
+ * useOptimistic es un hook que permite actualizar el estado local de la tarea
+ * anticipadamente antes de recibir la confirmación del servidor. Esto mejora la 
+ * experiencia del usuario al proporcionar una respuesta inmediata.
+ *
+ * @param task - La tarea actual que se va a manejar.
+ * @param toggleTask - Función para cambiar el estado de la tarea en el servidor.
+ */
+const [taskOptimistic, toggleTaskOptimistic] = useOptimistic(task, (state, newCompleteValue:boolean) => ({ ...state, completed: newCompleteValue }));
 
-  const onToggle = async () => {
-    const res = await toggleTask(task.id, !completed)
-    if('message' in res){
-      toast.error(`[SERVER-ACTION] : ${res.message}` , {duration:1000})
-      return;
-    } 
-    toast.success('[SERVER-ACTION] : Task updated successfully' , {duration:1000})
+// Obtenemos el estado de completado de la tarea optimista
+const { completed } = taskOptimistic;
+
+const onToggle = async () => {
+  // Actualizamos optimísticamente el estado de la tarea localmente
+  startTransition(() => toggleTaskOptimistic(!taskOptimistic.completed));
+
+  // Intentamos actualizar el estado de la tarea en el servidor
+  //! Se puede probar cambiando task.id por otro valor o !completed por algo que no sea booleano
+  const res = await toggleTask(task.id, !completed);
+  
+  // Si hay un mensaje de error, mostramos una notificación y revertimos el cambio optimista
+  if ('message' in res) {
+    toast.error(`[SERVER-ACTION] : ${res.message}`, { duration: 1000 });
+    return;
   }
+  
+  // Si la actualización fue exitosa, mostramos una notificación de éxito
+  toast.success('[SERVER-ACTION] : Task updated successfully', { duration: 1000 });
+};
+
 
 
   useEffect(() => {

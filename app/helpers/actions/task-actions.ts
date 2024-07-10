@@ -4,7 +4,13 @@ import prisma from '@/lib/prisma';
 import { Task } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 
+export const sleep = (sec: number) => {
+  return new Promise(resolve => setTimeout(resolve, sec * 1000));
+}
+
 export const toggleTask = async (id: string, completed: boolean) : Promise<Task | {message:string}> => {
+  
+  await sleep(1)
   const task = await prisma.task.findFirst({
     where: {
       id: id
