@@ -34,7 +34,7 @@ export const SimpleWidgetS = ({task, toggleTask} : Props) => {
  * experiencia del usuario al proporcionar una respuesta inmediata.
  *
  * @param task - La tarea actual que se va a manejar.
- * @param toggleTask - Función para cambiar el estado de la tarea en el servidor.
+ * @param callback - Función para cambiar el estado de la tarea en el servidor, recibe el estado actual @param state y @param newCompleteValue el nuevo valor.
  */
 const [taskOptimistic, toggleTaskOptimistic] = useOptimistic(task, (state, newCompleteValue:boolean) => ({ ...state, completed: newCompleteValue }));
 
