@@ -25,7 +25,7 @@ const ProductPage = async () => {
   return (
     <div className="flex flex-col">
       <span className="text-2xl my-2">Listado <small className="text-blue-500">(estatico)</small></span>
-      <ProductGrid items={pokemons}/>
+      <ProductGrid items={pokemons} />
       <ArrowDownIcon className="animate-bounce absolute right-2 bottom-0" size={24} />
     </div>
   )
