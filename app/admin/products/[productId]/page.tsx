@@ -20,7 +20,6 @@ export async function generateStaticParams() {
     const pokemons = data.results.map( pokemon => ({
       name: pokemon.name,
     }));
-    console.log({pokemons})
 
     return pokemons.map( ({ name }) => ({
       productId: name

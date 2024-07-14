@@ -47,7 +47,6 @@ export async function PUT(request: Request , segments:Segments) {
   try{
     const {completed, description, name} = await postSchema.validate(await request.json());
     const {params:{taskId}} = segments;
-    console.log({completed, description, name})
   
     if(!taskId){
       return NextResponse.json({
@@ -59,7 +58,6 @@ export async function PUT(request: Request , segments:Segments) {
       where : {id: taskId},
       data: { completed, description, name  }
     })
-    console.log({updatedTask})
     return NextResponse.json(updatedTask);
   } catch (error) {
     if (error instanceof yup.ValidationError) {
@@ -72,7 +70,6 @@ export async function PUT(request: Request , segments:Segments) {
 export async function DELETE(request: Request , segments:Segments) {
   try{
     const {params:{taskId}} = segments;
-    console.log({taskId}) 
     if(!taskId){  
       return NextResponse.json({
         data: 'Send a task id'
@@ -81,7 +78,6 @@ export async function DELETE(request: Request , segments:Segments) {
     const deletedTask = await prisma.task.delete({
       where : {id: taskId}
     })
-    console.log({deletedTask})
     return NextResponse.json(deletedTask);
   } catch (error) {
     if (error instanceof yup.ValidationError) {

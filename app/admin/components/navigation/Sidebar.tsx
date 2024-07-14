@@ -12,6 +12,8 @@ import { ChevronLeft } from 'lucide-react';
 import { ActiveLink } from '@/components/active-link/ActiveLink';
 import { useState } from 'react';
 import { FcAcceptDatabase, FcBiohazard, FcCalendar, FcLikePlaceholder, FcNews, FcPaid, FcShop } from 'react-icons/fc';
+import { auth } from '@/auth';
+import { User } from 'next-auth';
 
 const sidebarItems = [
   { path: '/admin/dashboard', description:'Informacion de tareas y agenda', title:'Dashboard', icon:  <FcNews  size={20} /> },
@@ -27,7 +29,8 @@ const sidebarItems = [
 
 
 
-const Sidebar = () => {
+const Sidebar = (user: User) => {
+
 
   const [sheetOpen, setSheetOpen] = useState(false);
   return (
@@ -39,8 +42,8 @@ const Sidebar = () => {
         <SheetHeader >
         <div className="flex flex-row gap-2 items-center mb-4">
         <Image
-          src="https://github.com/shadcn.png" className="rounded-full" alt={ 'avatar' } width={45} height={45}/>
-        <p>Bienvenido, Héctor</p>
+          src={user.image ?? 'https://github.com/shadcn.png'} className="rounded-full" alt={ 'avatar' } width={45} height={45}/>
+        <p>Bienvenido, {user.name}</p>
         </div>
         </SheetHeader>
         {

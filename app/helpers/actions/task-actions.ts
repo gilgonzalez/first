@@ -54,7 +54,7 @@ export const addTask = async (name:string, description:string, id?:string) : Pro
     revalidatePath('/admin/server-task')
     return task;
   }catch(err : any){
-    console.log(err)
+    console.warn(err)
     return {
       message: err.message
     }
@@ -71,7 +71,7 @@ export const deleteTask = async (id:string) : Promise<Task | {message:string}> =
     revalidatePath('/admin/server-task')
     return task;
   }catch(err : any){
-    console.log(err)
+    console.warn(err)
     return {
       message: err.message
     }

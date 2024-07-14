@@ -26,7 +26,6 @@ export const EditTaskS = ({task}: Props) => {
     const formData = new FormData(e.currentTarget);
     const description = formData.get('description') as string;
     const name = formData.get('name') as string;
-    console.log({description, name})
     if(description === '' || name === ''){
       toast.error(`Please fill all the fields`, {duration:1000});
       return;

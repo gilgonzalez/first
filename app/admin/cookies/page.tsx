@@ -15,7 +15,6 @@ const CookiesPage = () => {
   const cookieStore = cookies();
   const allCookies = cookieStore.getAll();
   const selectedTab = Number(cookieStore.get('selectedTab')?.value ?? 0);
-
   return (
     <div className="gap-4 p-4  text-slate-800">
         <div className="flex flex-col gap-8">

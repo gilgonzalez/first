@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { setCookie} from 'cookies-next';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   currentTab?: number;
@@ -12,10 +13,12 @@ const defaultTab = ['Cookies', 'Server-Actions', 'Settings', 'Profile', 'Logout'
 const Tab = ({tabOptions = defaultTab, currentTab = 0} : Props) => {
 
   const [selected, setselected] = useState(currentTab)
+  const router = useRouter()
 
   const onTabSelected = (selectedTab: number) => {
     setselected(selectedTab)
     setCookie('selectedTab', selectedTab.toString())
+    router.refresh()
   }
   return (
     <div className={`grid grid-cols-5 gap-2  space-x-2 rounded-xl bg-gray-200 p-2`}>

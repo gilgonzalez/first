@@ -13,7 +13,6 @@ type Props = {
 export const ProductCard = ( { id, name }: Props ) => {
 
   const pokemons = useProductStore(state => state.pokemons)
-  console.log({pokemons})
   const toggleFavorite = useProductStore(state => state.toggleFavorite)
   const isFavourite = pokemons.some(pokemon => pokemon.id === id);
   return (

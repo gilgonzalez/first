@@ -1,3 +1,5 @@
+import { auth } from '@/auth';
+import { SignIn } from '@/components/sign-in';
 import { Metadata } from 'next';
 
 type Props = {}
@@ -7,7 +9,8 @@ export const metadata : Metadata = {
   description: 'Contact page',
   keywords: ['contact', 'page'],
 }
-const ContactPage = (props: Props) => {
+const ContactPage = async(props: Props) => {
+  const session = await auth()
   const date = new Date()
   const formatedDate = new Intl.DateTimeFormat('es', {
     dateStyle: 'full',
@@ -16,7 +19,14 @@ const ContactPage = (props: Props) => {
   return (
     <div className='p-4'>
       <span>{formatedDate}</span>
-      <h2 className='text-5xl'>contact</h2>
+      {
+        session 
+          ? <h2 className='text-5xl'>Conectado</h2> 
+          : <h2 className='text-5xl'>No Conectado</h2>
+      }
+      {
+        !session && <SignIn/>
+      }
     </div>
   )
 }
