@@ -9,7 +9,6 @@ export const metadata = {
 
 const page = () => {
   return (
-    <div>
       <div className="flex flex-row flex-wrap gap-4 justify-center">
         {
           products.map(product => (
@@ -17,7 +16,6 @@ const page = () => {
           ))
         }
       </div>
-    </div>
   )
 }
 export default page

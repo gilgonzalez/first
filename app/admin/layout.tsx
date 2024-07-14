@@ -6,9 +6,9 @@ export default function AdminLayout({
  children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col h-full w-full ms-4">
+    <div className="flex flex-col h-full ms-4 ">
       <Sidebar/>
-      <div className="p-2 w-full overflow-y-auto no-scrollbar">
+      <div className=" overflow-y-auto no-scrollbar">
         {children}
       </div>
     </div>

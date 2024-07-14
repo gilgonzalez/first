@@ -7,7 +7,7 @@ const HeaderShop = () => {
     <div className="flex flex-row rounded-xl bg-yellow-100 m-2">
       <Image
         src="/logo.webp"
-        className="rounded-full" 
+        className="rounded-full p-4" 
         alt={ 'avatar' } 
         width={75}
         height={75}
