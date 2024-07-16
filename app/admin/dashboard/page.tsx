@@ -13,9 +13,8 @@ export const metadata = {
 const Dashboard = async () => {
 
   const session = await auth();
-
   if(!session){
-    redirect('/contact')
+    redirect('/api/auth/signin')
   }
 
   return (

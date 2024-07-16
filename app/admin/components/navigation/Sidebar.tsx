@@ -11,7 +11,7 @@ import {
 import { ChevronLeft } from 'lucide-react';
 import { ActiveLink } from '@/components/active-link/ActiveLink';
 import { useState } from 'react';
-import { FcAcceptDatabase, FcBiohazard, FcCalendar, FcLikePlaceholder, FcNews, FcPaid, FcShop } from 'react-icons/fc';
+import { FcAcceptDatabase, FcBiohazard, FcBusinessman, FcCalendar, FcLikePlaceholder, FcNews, FcPaid, FcShop } from 'react-icons/fc';
 import { auth } from '@/auth';
 import { User } from 'next-auth';
 
@@ -24,6 +24,7 @@ const sidebarItems = [
   { path: '/admin/products', description:'Listado y manejo de productos', title:'Productos', icon: <FcPaid  size={20}/> },
   { path: '/admin/favorites', description:'Marcados como favoritos', title:'Likes', icon:  <FcLikePlaceholder  size={20} /> },
   { path: '/admin/cookies', description:'Uso de las cookies', title:'Cookies', icon:  <PiCookieDuotone color="#aa7733" size={20} /> },
+  { path: '/admin/profile', description:'Datos del usuario en client side', title:'Profile', icon:  <FcBusinessman size={20} /> },
   { path: '/contact', description:'Página web vista cliente', title:'Go to site', icon:  <ProjectSymlinkIcon size={20} /> },
 ];
 
