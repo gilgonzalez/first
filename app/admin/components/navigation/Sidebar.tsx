@@ -14,6 +14,8 @@ import { useState } from 'react';
 import { FcAcceptDatabase, FcBiohazard, FcBusinessman, FcCalendar, FcLikePlaceholder, FcNews, FcPaid, FcShop } from 'react-icons/fc';
 import { auth } from '@/auth';
 import { User } from 'next-auth';
+import { IoLogOutOutline } from 'react-icons/io5';
+import LogoutButton from './LogoutButton';
 
 const sidebarItems = [
   { path: '/admin/dashboard', description:'Informacion de tareas y agenda', title:'Dashboard', icon:  <FcNews  size={20} /> },
@@ -26,6 +28,7 @@ const sidebarItems = [
   { path: '/admin/cookies', description:'Uso de las cookies', title:'Cookies', icon:  <PiCookieDuotone color="#aa7733" size={20} /> },
   { path: '/admin/profile', description:'Datos del usuario en client side', title:'Profile', icon:  <FcBusinessman size={20} /> },
   { path: '/contact', description:'Página web vista cliente', title:'Go to site', icon:  <ProjectSymlinkIcon size={20} /> },
+  { path: '/', description:'Cerrar Sesión', title:'Logout', icon:  <LogoutButton /> },
 ];
 
 

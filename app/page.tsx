@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import style from '../components/navbar/HomeLink.module.css'
+import SignInButton from '@/components/SignInButton';
 
-export default function Home() {
+
+export default async function  Home() {
 
   return (
     <main className="flex flex-col items-center p-24">
@@ -11,6 +13,8 @@ export default function Home() {
       <Link className={`${style.homelink} capitalize text-5xl font-bold`} href='/admin'>
         <span >Go to admin</span>
       </Link>
+      <SignInButton/>
+      
     </main>
   );
 }
