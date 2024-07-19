@@ -13,5 +13,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID || '',
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
     })
-  ]
+  ],
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      // Redirige al usuario a la ruta que deseas después del login
+      return baseUrl + '/admin/shop'
+    }
+  }
 });
