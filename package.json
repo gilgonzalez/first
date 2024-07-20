@@ -11,9 +11,11 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.4.1",
     "@headlessui/react": "^2.1.2",
     "@jdion/tilt-react": "^1.0.0",
     "@primer/octicons-react": "^19.10.0",
+    "@prisma/adapter-pg": "^5.17.0",
     "@prisma/client": "^5.16.1",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
@@ -36,6 +38,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/pg": "^8.11.6",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "latest",

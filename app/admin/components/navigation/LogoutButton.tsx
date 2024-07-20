@@ -1,5 +1,5 @@
 import { IoLogOutOutline } from 'react-icons/io5';
-import { signOut } from '@/auth';
+import { signOut } from 'next-auth/react';
 const LogoutButton =  () => {
   
   return (

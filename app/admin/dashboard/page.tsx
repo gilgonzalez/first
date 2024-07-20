@@ -34,6 +34,9 @@ const Dashboard = async () => {
             <p className="text-xs text-slate-500">{session?.user?.email}</p>
           </span>
         </div>
+        <div>
+          {JSON.stringify(session)}
+        </div>
       </div>
     
   );
