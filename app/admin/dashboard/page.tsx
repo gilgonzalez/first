@@ -2,6 +2,7 @@ import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import Image from 'next/image';
+import  getServerSession  from "next-auth";
 
 
 export const metadata = {

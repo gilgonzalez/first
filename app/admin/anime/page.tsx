@@ -18,7 +18,7 @@ const DashboardPage = async () => {
 
   const characters = await getCharacters()
   return (
-    <div className="text-black">
+    <div className="text-black p-4">
       <h1 className="mt-2 text-3xl font-bold">Anime</h1>
       <span className="text-xl">Personajes Kimetsu no Yaiba</span>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6  gap-10 p-4"> 

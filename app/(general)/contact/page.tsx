@@ -1,6 +1,8 @@
+import LogInButton from '@/app/admin/components/navigation/LogInButton';
 import { auth } from '@/auth';
-import { SignIn } from '@/components/sign-in';
 import { Metadata } from 'next';
+import { signIn } from 'next-auth/react';
+import { IoLogInOutline } from 'react-icons/io5';
 
 type Props = {}
 
@@ -24,9 +26,7 @@ const ContactPage = async(props: Props) => {
           ? <h2 className='text-5xl'>Conectado</h2> 
           : <h2 className='text-5xl'>No Conectado</h2>
       }
-      {
-        !session && <SignIn/>
-      }
+      
     </div>
   )
 }

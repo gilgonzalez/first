@@ -37,7 +37,7 @@ const Sidebar = (user: User) => {
   return (
     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
       <SheetTrigger>
-        <ChevronLeft className="absolute inset-0 my-auto text-slate-500/90 bg-gray-200/50 rounded-se-xl rounded-br-xl h-44 place-self-start"/>
+        <ChevronLeft className="absolute inset-0 my-auto hover:w-8 text-slate-500/90 bg-gray-200/50 rounded-se-xl rounded-br-xl h-44 place-self-start hover:scale-105 hover:bg-gray-400 hover:text-white transition-all duration-300"/>
       </SheetTrigger>
       <SheetContent className="flex flex-col gap-4 bg-slate-200" side={'left'}>
         <SheetHeader >
